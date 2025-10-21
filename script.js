@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
       completed: false
     });
 
+    saveTodos(); // Simpan perubahan ke localStorage
+
     todoInput.value = "";
     dateInput.value = "";
     renderTodos();
@@ -82,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target.classList.contains("toggle-btn")) {
       const index = e.target.dataset.index;
       todos[index].completed = !todos[index].completed;
+
+        saveTodos(); // Simpan perubahan ke localStorage
+        
       renderTodos();
     }
   });
