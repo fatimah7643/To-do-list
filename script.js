@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const dateInput = document.getElementById("date-input");
   const tableBody = document.getElementById("todo-tbody");
   const deleteAllBtn = document.getElementById("delete-all");
+  const deleteSelectedBtn = document.getElementById("delete-selected");
   const filterSelect = document.getElementById("filter-select");
   let currentFilter = "all";
     filterSelect.addEventListener("change", (e) => {
@@ -43,6 +44,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const row = document.createElement("tr");
 
       row.innerHTML = `
+        <td class="border border-blue-500/20 px-4 py-2 text-center">
+            <input type="checkbox" class="select-task" data-index="${index}">
         <td class="border border-blue-500/20 px-4 py-2 text-center">${todo.task}</td>
         <td class="border border-blue-500/20 px-4 py-2 text-center">${todo.dueDate || '-'}</td>
         <td class="border border-blue-500/20 px-4 py-2 text-center">
@@ -86,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
       todos[index].completed = !todos[index].completed;
 
         saveTodos(); // Simpan perubahan ke localStorage
-        
+
       renderTodos();
     }
   });
@@ -98,6 +101,27 @@ document.addEventListener("DOMContentLoaded", () => {
       renderTodos();
     }
   });
+
+  //hapus tugas yang dipilih
+    deleteSelectedBtn.addEventListener("click", () => {
+       if (selectedCheckboxes.length === 0) {
+        alert("Pilih task yang mau dihapus dulu!");
+        return;
+    }
+
+    if (confirm("are you sure?")) {
+      const selectedIndexes = Array.from(selectedCheckboxes).map(cb => parseInt(cb.dataset.index));
+      todos = todos.filter((_, index) => !selectedIndexes.includes(index));
+      saveTodos();
+      renderTodos();
+    }
+  });
+
+  // filter task (all/completed/pending)
+  filterSelect.addEventListener("change", (e) => {
+    currentFilter = e.target.value;
+    renderTodos();
+  }); 
 
   renderTodos();
 });
