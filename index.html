@@ -48,7 +48,7 @@
 </head>
 <body class="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4">
     <div class="text-center">
-        <div class="bg-gray-300/10  px-4 sm:px-6 py-6 rounded-lg text-white max-w-xl mx-auto shadow-lg border-[2px] border-gray-500">
+        <div class="bg-purple-600/20  px-4 sm:px-3 py-6 rounded-lg text-white max-w-xl mx-auto shadow-lg border-[2px] border-gray-500">
             <h1 class="text-3xl font-bold mb-4">Todo List</h1>
             <p class="text-gray-400 mb-6">Manage your tasks efficiently</p>
     
@@ -56,6 +56,7 @@
             <form id="todo-form" class="flex flex-wrap justify-center gap-4 mb-4">
                 <input id="todo-input" type="text" class="min-w-[180px] border-[1px] rounded-[10px] p-2 bg-white dark:bg-gray-600 text-gray-800 dark:text-white" , placeholder="Add a Todo..." >
                 <input id="date-input" type="date" class="min-w-[140px] border-[1px] rounded-[10px] p-2 bg-white dark:bg-gray-600 text-gray-800 dark:text-white" placeholder="duedate">
+                <input id="note-input" type="text" class="min-w-[200px] border-[1px] rounded-[10px] p-2 bg-white dark:bg-gray-600 text-gray-800 dark:text-white" placeholder="Add a Note...">
 
                 <button type="submit" class="bg-blue-500 text-white px-4 py-1 rounded font-bold "><i class="fas fa-plus"></i></button>
             </form>
@@ -78,9 +79,10 @@
                     <tr class="bg-gray-700 text-gray-300">
                         <th class="border px-4 py-2 text-center">Select</th>
                         <th class="border px-4 py-2 text-center ">Task</th>
-                        <th class="border px-4 py 2 text-center ">Due Date</th>
-                        <th class="border px-4 py 2 text-center">Status</th>
-                        <th class="border px-4 py 2 text-center">Action</th>
+                        <th class="border px-4 py-2 text-center ">Due Date</th>
+                        <th class="border px-4 py-2 text-center">Status</th>
+                        <th class="border px-4 py-2 text-center">Action</th>
+                        <th class="border px-4 py-2 text-center">Note</th>
                     </tr>
                 </thead>
                 <tbody id="todo-tbody">
@@ -96,6 +98,14 @@
         <span class="text-sm text-grey-400"> © 2025 Fatimah. <strong>All rights reserved</strong>
         </span>
     </footer>
+    </div>
+
+    <div id="note-modal" class="fixed inset-0 bg-black/60 hidden justify-center items-center z-50">
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-6 w-11/12 max-w-md modal-content">
+            <h2 class="text-xl font-bold mb-4">Task Note</h2>
+            <p id="note-content" class="mb-6 text-gray-800 dark:text-gray-200"></p>
+            <button id="close-note-modal" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Close</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
